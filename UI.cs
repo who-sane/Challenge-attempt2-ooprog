@@ -39,20 +39,23 @@ namespace CivSem1Challenge2_RegistrationSystem
                 case "1":
                     //TODO: from the attribute this.Courses, print the courseNo and names of all of the courses
                     // use GetCourseDetails to do this
-                     for(int i = 0; i < Courses.Count; i++){
-                        Console.WriteLine(this.Courses[i].GetCourseDetails());
-                     }
+                    // For every value within Courses, display the string output from courses using the get course detail method
+                     foreach (var course in Courses)
+                    {
+                        System.Console.WriteLine(course.GetCourseDetails());
+                    }    
+                     
                     //----------
                     break;
                 
                 case "2":
-                    System.Console.WriteLine("Please enter the course number");
+                      System.Console.WriteLine("Please enter the course number");
                     int num;
                     while(!int.TryParse(Console.ReadLine(), out num)) {
                         System.Console.WriteLine("Invalid, enter again");
                     }
-
-                    int numStudents = this.CourseGetNumStudents(num);
+                
+                    int numStudents = this.GetNumStudents(num);
                     if(numStudents == -1) {
                         System.Console.WriteLine($"Course {num} doesn't exist");
                         break;
@@ -77,10 +80,13 @@ namespace CivSem1Challenge2_RegistrationSystem
                 case "4":
                     //TODO: Print the amount of students in the system
                     // Create and call a method/function named GetNumStudents() to do this.
+                    System.Console.WriteLine(GetNumStudents());
                     break;
 
                 case "5":
                     //TODO: Print the number of students enrolled in valid courses
+                    // When in doubt, make a new function
+                     System.Console.WriteLine(GetEnrolledStudents());
                     
                     break;
 
@@ -138,8 +144,20 @@ namespace CivSem1Challenge2_RegistrationSystem
 
 
         //TODO: create the GetNumStudents method/function here
+        private int GetNumStudents(){
+            return this.Students.Count;
+        }
 
 
+private int GetEnrolledStudents(){
+             
+            int total = 0;
+            foreach (var course in Courses)
+            {
+                total += course.Enrolments.Count();
+            }
+            return total;
+    }
         //---------------------
 
         private string GetStudentName(int num)
@@ -150,7 +168,7 @@ namespace CivSem1Challenge2_RegistrationSystem
             return null;
         }
 
-        private int CourseGetNumStudents(int num)
+        private int GetNumStudents(int num)
         {
             //TODO: write code find the relevant courseNo in Courses and return the number of students/enrolments
             // if num doesn't exist in Courses, return -1
