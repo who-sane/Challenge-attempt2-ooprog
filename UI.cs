@@ -80,13 +80,15 @@ namespace CivSem1Challenge2_RegistrationSystem
                 case "4":
                     //TODO: Print the amount of students in the system
                     // Create and call a method/function named GetNumStudents() to do this.
+                    // Took me a while to find where to make it, kept getting errors?? 
+                    // Through calling a function, the program executes the code block from there, here
                     System.Console.WriteLine(GetNumStudents());
                     break;
 
                 case "5":
                     //TODO: Print the number of students enrolled in valid courses
                     // When in doubt, make a new function
-                     System.Console.WriteLine(GetEnrolledStudents());
+                  DateTimeOffset 
                     
                     break;
 
@@ -150,7 +152,7 @@ namespace CivSem1Challenge2_RegistrationSystem
 
 
 private int GetEnrolledStudents(){
-             
+             // for loop; for each course in the Courses subsection, find the total 'count' of the items in the list, return that total.
             int total = 0;
             foreach (var course in Courses)
             {
@@ -165,14 +167,35 @@ private int GetEnrolledStudents(){
             //TODO: write code find the relevant student in Students and return the student's first name and surname
             // if num doesn't exist in Students, return null;
             // should use the method GetFullName() from Student/Person to get the name
-            return null;
+             string studentVal = null;
+            // i understood it this time around, like task 1, you borrow from a pre existing function, all I had to do was use a for loop again and say, if the student number is 
+            // the same as the input, then give the full name instead of increments.
+            
+            foreach(var student in this.Students)
+            
+            {
+
+                if(student.StudentNo == num)
+                {
+                    studentVal = student.GetFullName();
+                    break;
+                }
+            }
+            
+            return studentVal;
         }
+            
+
+        
 
         private int GetNumStudents(int num)
         {
             //TODO: write code find the relevant courseNo in Courses and return the number of students/enrolments
             // if num doesn't exist in Courses, return -1
             return -1;
+                
+
+
         }
 
         private void AddStudent()
